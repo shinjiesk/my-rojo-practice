@@ -17,16 +17,18 @@ jobs:
           version: latest
           args: --check .
 
-  selene:
+selene:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Selene
+      - name: Install Rokit
         run: |
-          curl -L https://github.com/Kampfkarren/selene/releases/latest/download/selene-linux.zip -o selene.zip
-          unzip selene.zip
-          chmod +x selene
-          sudo mv selene /usr/local/bin/
+          curl -sSf https://raw.githubusercontent.com/rojo-rbx/rokit/main/scripts/install.sh | bash
+      - name: Install tools via Rokit
+        run: |
+          export PATH="$HOME/.rokit/bin:$PATH"
+          rokit install
       - name: Run Selene
-        run: selene src/
-        
+        run: |
+          export PATH="$HOME/.rokit/bin:$PATH"
+          selene src/
