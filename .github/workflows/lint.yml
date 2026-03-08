@@ -27,7 +27,7 @@ jobs:
         - name: Install tools via Rokit
           run: |
             export PATH="$HOME/.rokit/bin:$PATH"
-            rokit install
+            rokit install --no-trust-check
         - name: Run Selene
           run: |
             export PATH="$HOME/.rokit/bin:$PATH"
